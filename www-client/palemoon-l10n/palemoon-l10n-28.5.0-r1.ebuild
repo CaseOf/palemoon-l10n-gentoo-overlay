@@ -60,7 +60,7 @@ src_unpack() {
 }
 
 src_install() {
-	for install_dir in /usr/lib/palemoon /opt/palemoon; do
+	for install_dir in "/usr/$(usex amd64 lib64 lib)/palemoon" /opt/palemoon; do
 		insinto ${install_dir}/browser/extensions
 		for src_file in ${A}; do
 			lang="$(printf ${src_file} | sed "s/pm-langpack-\(.*\)-${PV}\.xpi/\1/")"
