@@ -1,7 +1,9 @@
 # Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
+
+inherit multilib
 
 DESCRIPTION="Translations for the Pale Moon browser"
 HOMEPAGE="https://www.palemoon.org/"
@@ -29,12 +31,12 @@ RDEPEND="
 	|| (
 		(
 			>=www-client/palemoon-28.0.0
-			<www-client/palemoon-28.6.0
+			<www-client/palemoon-28.7.0
 		)
 
 		(
 			>=www-client/palemoon-bin-28.0.0
-			<www-client/palemoon-bin-28.6.0
+			<www-client/palemoon-bin-28.7.0
 		)
 	)
 "
@@ -60,7 +62,7 @@ src_unpack() {
 }
 
 src_install() {
-	for install_dir in "/usr/$(usex amd64 lib64 lib)/palemoon" /opt/palemoon; do
+	for install_dir in "/usr/$(get_libdir)/palemoon" /opt/palemoon; do
 		insinto ${install_dir}/browser/extensions
 		for src_file in ${A}; do
 			lang="$(printf ${src_file} | sed "s/pm-langpack-\(.*\)-${PV}\.xpi/\1/")"
