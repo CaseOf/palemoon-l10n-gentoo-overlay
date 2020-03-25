@@ -1,4 +1,4 @@
-# Copyright 1999-2019 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -31,12 +31,12 @@ RDEPEND="
 	|| (
 		(
 			>=www-client/palemoon-28.0.0
-			<www-client/palemoon-28.9.0
+			<www-client/palemoon-28.10.0
 		)
 
 		(
 			>=www-client/palemoon-bin-28.0.0
-			<www-client/palemoon-bin-28.9.0
+			<www-client/palemoon-bin-28.10.0
 		)
 	)
 "
@@ -53,7 +53,7 @@ pkg_nofetch() {
 	einfo "and place them in your DISTDIR directory."
 	einfo "Upstream servers need a User-Agent header in the request."
 	einfo "You can use the following one:"
-	einfo "    Mozilla/5.0 (X11; Linux x86_64; rv:60.9) Gecko/20100101 Goanna/4.1 Firefox/60.9 PaleMoon/${PV}"
+	einfo "    Mozilla/5.0 (X11; Linux x86_64; rv:68.9) Gecko/20100101 Goanna/4.4 Firefox/68.9 PaleMoon/${PV}"
 }
 
 src_unpack() {
