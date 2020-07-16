@@ -31,12 +31,12 @@ RDEPEND="
 	|| (
 		(
 			>=www-client/palemoon-28.0.0
-			<www-client/palemoon-28.11.0
+			<www-client/palemoon-28.12.0
 		)
 
 		(
 			>=www-client/palemoon-bin-28.0.0
-			<www-client/palemoon-bin-28.11.0
+			<www-client/palemoon-bin-28.12.0
 		)
 	)
 "
