@@ -29,15 +29,8 @@ unset lang langpack
 
 RDEPEND="
 	|| (
-		(
-			>=www-client/palemoon-28.0.0
-			<www-client/palemoon-28.13.0
-		)
-
-		(
-			>=www-client/palemoon-bin-28.0.0
-			<www-client/palemoon-bin-28.13.0
-		)
+		=www-client/palemoon-${PV%.*}*
+		=www-client/palemoon-bin-${PV%.*}*
 	)
 "
 DEPEND=""
@@ -45,15 +38,39 @@ DEPEND=""
 S="${WORKDIR}"
 
 pkg_nofetch() {
-	einfo "Please download following language packs:"
+	enabled_langs=""
 	for src_file in ${A}; do
-		lang="$(printf ${src_file} | sed "s/${PN/-l10n/}-${PV}-langpack-\(.*\)\.xpi/\1/")"
-		einfo "    - https://addons.palemoon.org/?component=download&id=langpack-${lang}@${PN/-l10n/}.org&version=${PV}"
+		enabled_langs="${enabled_langs} $(printf ${src_file} | sed "s/pm-langpack-\(.*\)-${PV}\.xpi/\1/")"
+	done
+	user_agent="Mozilla/5.0 (X11; Linux x86_64; rv:68.9) Gecko/20100101 Goanna/4.6 Firefox/68.9 PaleMoon/${PV}"
+
+	einfo "Please download following language packs:"
+	for lang in ${enabled_langs}; do
+		einfo "    - https://addons.palemoon.org/?component=download&id=langpack-${lang}@palemoon.org&version=${PV}"
 	done
 	einfo "and place them in your DISTDIR directory."
 	einfo "Upstream servers need a User-Agent header in the request."
 	einfo "You can use the following one:"
-	einfo "    Mozilla/5.0 (X11; Linux x86_64; rv:68.9) Gecko/20100101 Goanna/4.4 Firefox/68.9 PaleMoon/${PV}"
+	einfo "    ${user_agent}"
+	einfo ""
+	einfo "For example:"
+	einfo ""
+	einfo "  - with wget:"
+	einfo ""
+	for lang in ${enabled_langs}; do
+		einfo "      wget -O pm-langpack-${lang}-${PV}.xpi \\
+      -U \"${user_agent}\" \\
+      \"https://addons.palemoon.org/?component=download&id=langpack-${lang}@palemoon.org&version=${PV}\""
+	einfo ""
+	done
+	einfo "  - with curl:"
+	einfo ""
+	for lang in ${enabled_langs}; do
+		einfo "      curl -o pm-langpack-${lang}-${PV}.xpi \\
+      -A \"${user_agent}\" \\
+      \"https://addons.palemoon.org/?component=download&id=langpack-${lang}@palemoon.org&version=${PV}\""
+	einfo ""
+	done
 }
 
 src_unpack() {
