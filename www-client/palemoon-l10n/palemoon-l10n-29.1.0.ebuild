@@ -18,7 +18,7 @@ RESTRICT="fetch strip"
 # when changing the language lists, please be careful to preserve the spaces (bug 491728)
 #
 # "en:en-US" for mapping from Gentoo "en" to upstream "en-US" etc.
-LANGUAGES=" bg cs de el en-GB:en-gb es-AR:es-ar es:es-es es-MX:es-mx fr hu it ko nl pl pt-BR:pt-br pt:pt-pt ru sk sv:sv-se tl tr uk zh-CN:zh-cn "
+LANGUAGES=" ar bg cs da de el en-GB:en-gb es-AR:es-ar es:es-es es-MX:es-mx fi fr gl hr hu id is it ja ko nl pl pt-BR:pt-br pt:pt-pt ro ru sk sl sr sv:sv-se th tl tr uk zh-CN:zh-cn zh-TW:zh-tw "
 
 for lang in ${LANGUAGES}; do
 	langpack="pm-langpack-${lang#*:}-${PV}.xpi"
