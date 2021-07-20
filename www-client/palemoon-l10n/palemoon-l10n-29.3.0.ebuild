@@ -42,7 +42,7 @@ pkg_nofetch() {
 	for src_file in ${A}; do
 		enabled_langs="${enabled_langs} $(printf ${src_file} | sed "s/pm-langpack-\(.*\)-${PV}\.xpi/\1/")"
 	done
-	user_agent="Mozilla/5.0 (X11; Linux x86_64; rv:68.9) Gecko/20100101 Goanna/4.6 Firefox/68.9 PaleMoon/${PV}"
+	user_agent="Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101 Goanna/4.8 Firefox/68.0 PaleMoon/${PV}"
 
 	einfo "Please download following language packs:"
 	for lang in ${enabled_langs}; do
