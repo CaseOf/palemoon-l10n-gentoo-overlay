@@ -1,4 +1,4 @@
-# Copyright 1999-2022 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -80,12 +80,12 @@ src_unpack() {
 
 src_install() {
 	for install_dir in "/usr/$(get_libdir)/palemoon" /opt/palemoon; do
-		insinto ${install_dir}/extensions
+		insinto ${install_dir}/browser/extensions
 		for src_file in ${A}; do
 			lang="$(printf ${src_file} | sed "s/pm-langpack-\(.*\)-${PV}\.xpi/\1/")"
 			newins "${DISTDIR}/${src_file}" "langpack-${lang}@${PN/-l10n}.org.xpi"
 		done
-		insinto ${install_dir}/defaults/pref
+		insinto ${install_dir}/browser/defaults/preferences
 		doins "${FILESDIR}"/disable-addons-installation-warning.js
 		doins "${FILESDIR}"/match-system-locale-configuration.js
 	done
